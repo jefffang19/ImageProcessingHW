@@ -107,6 +107,11 @@
             // 
             this.subactionList.FormattingEnabled = true;
             this.subactionList.ItemHeight = 15;
+            this.subactionList.Items.AddRange(new object[] {
+            "R channel",
+            "G channel",
+            "B channel",
+            "Grayscale"});
             this.subactionList.Location = new System.Drawing.Point(484, 493);
             this.subactionList.Name = "subactionList";
             this.subactionList.Size = new System.Drawing.Size(120, 79);

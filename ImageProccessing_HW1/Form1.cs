@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace ImageProccessing_HW1
     public partial class Form1 : Form
     {
         private Bitmap openImag;
+        private Bitmap afterImag;
+        private int actionlistSelect = 0;
         public Form1()
         {
             InitializeComponent();
@@ -58,39 +61,15 @@ namespace ImageProccessing_HW1
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // decide if show threshold input or sub_action select when ActionBox is Changed
-            switch (actionList.SelectedIndex)
+            actionlistSelect = actionList.SelectedIndex;
+            switch (actionlistSelect)
             {
-                case 0:
-                    // hide input box
-                    thresholdInputBox.Visible = false;
-                    subactionList.Visible = true;
-                    break;
-                case 1:
-                    // hide input box
-                    thresholdInputBox.Visible = false;
-                    subactionList.Visible = true;
-                    break;
-                case 2:
-                    // hide input box
-                    thresholdInputBox.Visible = false;
-                    subactionList.Visible = true;
-                    break;
                 case 3:
                     // show input box
                     thresholdInputBox.Visible = true;
                     subactionList.Visible = false;
                     break;
-                case 4:
-                    // hide input box
-                    thresholdInputBox.Visible = false;
-                    subactionList.Visible = true;
-                    break;
-                case 5:
-                    // hide input box
-                    thresholdInputBox.Visible = false;
-                    subactionList.Visible = true;
-                    break;
-                case 6:
+                default:
                     // hide input box
                     thresholdInputBox.Visible = false;
                     subactionList.Visible = true;
@@ -101,7 +80,44 @@ namespace ImageProccessing_HW1
 
         private void listBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-
+            switch (actionlistSelect)
+            {
+                // rgb extract
+                case 0:
+                    // see what sub action
+                    RgbExtract rgbExtract = new RgbExtract();
+                    switch (subactionList.SelectedIndex)
+                    {
+                        case 0:
+                            // set R
+                            afterImag = rgbExtract.getR(openImag);
+                            break;
+                        case 1:
+                            // set G
+                            afterImag = rgbExtract.getG(openImag);
+                            break;
+                        case 2:
+                            // set B
+                            afterImag = rgbExtract.getB(openImag);
+                            break;
+                        case 3:
+                            // set grayscale
+                            afterImag = rgbExtract.toGrayscale(openImag);
+                            break;
+                    }
+                    afterImgBox.Image = afterImag;
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+                case 6:
+                    break;
+            }
         }
     }
 }
