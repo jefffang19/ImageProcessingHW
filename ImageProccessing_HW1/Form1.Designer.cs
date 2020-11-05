@@ -34,14 +34,17 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.afterImgBox = new System.Windows.Forms.PictureBox();
+            this.actionList = new System.Windows.Forms.ListBox();
+            this.subactionList = new System.Windows.Forms.ListBox();
+            this.thresholdInputBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).BeginInit();
             this.SuspendLayout();
             // 
             // loadBtn
             // 
-            this.loadBtn.Location = new System.Drawing.Point(196, 503);
-            this.loadBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadBtn.Location = new System.Drawing.Point(41, 493);
+            this.loadBtn.Margin = new System.Windows.Forms.Padding(4);
             this.loadBtn.Name = "loadBtn";
             this.loadBtn.Size = new System.Drawing.Size(100, 29);
             this.loadBtn.TabIndex = 0;
@@ -52,7 +55,7 @@
             // preImgBox
             // 
             this.preImgBox.Location = new System.Drawing.Point(13, 1);
-            this.preImgBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.preImgBox.Margin = new System.Windows.Forms.Padding(4);
             this.preImgBox.Name = "preImgBox";
             this.preImgBox.Size = new System.Drawing.Size(531, 475);
             this.preImgBox.TabIndex = 1;
@@ -82,21 +85,63 @@
             this.afterImgBox.TabIndex = 3;
             this.afterImgBox.TabStop = false;
             // 
+            // actionList
+            // 
+            this.actionList.FormattingEnabled = true;
+            this.actionList.ItemHeight = 15;
+            this.actionList.Items.AddRange(new object[] {
+            "1. RGB Extraction & Transformation",
+            "2. Smooth filter",
+            "3. Histogram Equalization",
+            "4. User-defined thresholding",
+            "5. Sobel edge detection",
+            "6. Threshold of (5)",
+            "7. Image registration"});
+            this.actionList.Location = new System.Drawing.Point(183, 493);
+            this.actionList.Name = "actionList";
+            this.actionList.Size = new System.Drawing.Size(262, 79);
+            this.actionList.TabIndex = 4;
+            this.actionList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // subactionList
+            // 
+            this.subactionList.FormattingEnabled = true;
+            this.subactionList.ItemHeight = 15;
+            this.subactionList.Location = new System.Drawing.Point(484, 493);
+            this.subactionList.Name = "subactionList";
+            this.subactionList.Size = new System.Drawing.Size(120, 79);
+            this.subactionList.TabIndex = 5;
+            this.subactionList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
+            // 
+            // thresholdInputBox
+            // 
+            this.thresholdInputBox.Location = new System.Drawing.Point(623, 497);
+            this.thresholdInputBox.Name = "thresholdInputBox";
+            this.thresholdInputBox.Size = new System.Drawing.Size(120, 25);
+            this.thresholdInputBox.TabIndex = 6;
+            this.thresholdInputBox.Text = "Input Threshold";
+            this.thresholdInputBox.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 562);
+            this.ClientSize = new System.Drawing.Size(1195, 598);
+            this.Controls.Add(this.thresholdInputBox);
+            this.Controls.Add(this.subactionList);
+            this.Controls.Add(this.actionList);
             this.Controls.Add(this.afterImgBox);
             this.Controls.Add(this.saveBtn);
             this.Controls.Add(this.preImgBox);
             this.Controls.Add(this.loadBtn);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -108,6 +153,9 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.PictureBox afterImgBox;
+        private System.Windows.Forms.ListBox actionList;
+        private System.Windows.Forms.ListBox subactionList;
+        private System.Windows.Forms.TextBox thresholdInputBox;
     }
 }
 
