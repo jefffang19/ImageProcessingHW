@@ -28,55 +28,86 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.loadBtn = new System.Windows.Forms.Button();
+            this.preImgBox = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.saveBtn = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.afterImgBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // loadBtn
             // 
-            this.button1.Location = new System.Drawing.Point(118, 293);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.loadBtn.Location = new System.Drawing.Point(196, 503);
+            this.loadBtn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadBtn.Name = "loadBtn";
+            this.loadBtn.Size = new System.Drawing.Size(100, 29);
+            this.loadBtn.TabIndex = 0;
+            this.loadBtn.Text = "Load Image";
+            this.loadBtn.UseVisualStyleBackColor = true;
+            this.loadBtn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // pictureBox1
+            // preImgBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(57, 41);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(192, 231);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.preImgBox.Location = new System.Drawing.Point(13, 1);
+            this.preImgBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.preImgBox.Name = "preImgBox";
+            this.preImgBox.Size = new System.Drawing.Size(531, 475);
+            this.preImgBox.TabIndex = 1;
+            this.preImgBox.TabStop = false;
+            this.preImgBox.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // saveBtn
+            // 
+            this.saveBtn.Location = new System.Drawing.Point(778, 503);
+            this.saveBtn.Name = "saveBtn";
+            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.TabIndex = 2;
+            this.saveBtn.Text = "Save Image";
+            this.saveBtn.UseVisualStyleBackColor = true;
+            this.saveBtn.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // afterImgBox
+            // 
+            this.afterImgBox.Location = new System.Drawing.Point(551, 1);
+            this.afterImgBox.Name = "afterImgBox";
+            this.afterImgBox.Size = new System.Drawing.Size(504, 475);
+            this.afterImgBox.TabIndex = 3;
+            this.afterImgBox.TabStop = false;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1067, 562);
+            this.Controls.Add(this.afterImgBox);
+            this.Controls.Add(this.saveBtn);
+            this.Controls.Add(this.preImgBox);
+            this.Controls.Add(this.loadBtn);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button loadBtn;
+        private System.Windows.Forms.PictureBox preImgBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button saveBtn;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.PictureBox afterImgBox;
     }
 }
 

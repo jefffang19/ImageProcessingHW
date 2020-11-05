@@ -12,6 +12,7 @@ namespace ImageProccessing_HW1
 {
     public partial class Form1 : Form
     {
+        private Bitmap openImag;
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +20,14 @@ namespace ImageProccessing_HW1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            // load iamge
+            openFileDialog1.Filter = "All Files|*.*|Bitmap Files (.bmp)|*.bmp|Jpeg Files(.jpg)|*.jpg";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                openImag = new Bitmap(openFileDialog1.FileName);
+                preImgBox.Image = openImag;
+                afterImgBox.Image = openImag;
+            }
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -29,11 +37,16 @@ namespace ImageProccessing_HW1
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "All Files|*.*|Bitmap Files (.bmp)|*.bmp|Jpeg Files(.jpg)|*.jpg";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            // save image
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                Bitmap openImag = new Bitmap(openFileDialog1.FileName);
-                pictureBox1.Image = openImag;
+                openImag.Save(sfd.FileName);
             }
         }
     }
