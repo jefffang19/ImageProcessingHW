@@ -36,7 +36,9 @@
             this.afterImgBox = new System.Windows.Forms.PictureBox();
             this.actionList = new System.Windows.Forms.ListBox();
             this.subactionList = new System.Windows.Forms.ListBox();
-            this.thresholdInputBox = new System.Windows.Forms.TextBox();
+            this.thresholdMinInputBox = new System.Windows.Forms.TextBox();
+            this.thresholdMaxInputBox = new System.Windows.Forms.TextBox();
+            this.doThreshold = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).BeginInit();
             this.SuspendLayout();
@@ -118,21 +120,45 @@
             this.subactionList.TabIndex = 5;
             this.subactionList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
             // 
-            // thresholdInputBox
+            // thresholdMinInputBox
             // 
-            this.thresholdInputBox.Location = new System.Drawing.Point(623, 497);
-            this.thresholdInputBox.Name = "thresholdInputBox";
-            this.thresholdInputBox.Size = new System.Drawing.Size(120, 25);
-            this.thresholdInputBox.TabIndex = 6;
-            this.thresholdInputBox.Text = "Input Threshold";
-            this.thresholdInputBox.Visible = false;
+            this.thresholdMinInputBox.Location = new System.Drawing.Point(623, 497);
+            this.thresholdMinInputBox.Name = "thresholdMinInputBox";
+            this.thresholdMinInputBox.Size = new System.Drawing.Size(137, 25);
+            this.thresholdMinInputBox.TabIndex = 6;
+            this.thresholdMinInputBox.Text = "Input Threshold Min";
+            this.thresholdMinInputBox.Visible = false;
+            this.thresholdMinInputBox.TextChanged += new System.EventHandler(this.thresholdInputBox_TextChanged);
+            // 
+            // thresholdMaxInputBox
+            // 
+            this.thresholdMaxInputBox.Location = new System.Drawing.Point(623, 528);
+            this.thresholdMaxInputBox.Name = "thresholdMaxInputBox";
+            this.thresholdMaxInputBox.Size = new System.Drawing.Size(137, 25);
+            this.thresholdMaxInputBox.TabIndex = 7;
+            this.thresholdMaxInputBox.Text = "Input Threshold Max";
+            this.thresholdMaxInputBox.Visible = false;
+            this.thresholdMaxInputBox.TextChanged += new System.EventHandler(this.thresholdMaxInputBox_TextChanged);
+            // 
+            // doThreshold
+            // 
+            this.doThreshold.Location = new System.Drawing.Point(645, 563);
+            this.doThreshold.Name = "doThreshold";
+            this.doThreshold.Size = new System.Drawing.Size(75, 23);
+            this.doThreshold.TabIndex = 8;
+            this.doThreshold.Text = "threshold";
+            this.doThreshold.UseVisualStyleBackColor = true;
+            this.doThreshold.Visible = false;
+            this.doThreshold.Click += new System.EventHandler(this.doThreshold_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 598);
-            this.Controls.Add(this.thresholdInputBox);
+            this.Controls.Add(this.doThreshold);
+            this.Controls.Add(this.thresholdMaxInputBox);
+            this.Controls.Add(this.thresholdMinInputBox);
             this.Controls.Add(this.subactionList);
             this.Controls.Add(this.actionList);
             this.Controls.Add(this.afterImgBox);
@@ -160,7 +186,9 @@
         private System.Windows.Forms.PictureBox afterImgBox;
         private System.Windows.Forms.ListBox actionList;
         private System.Windows.Forms.ListBox subactionList;
-        private System.Windows.Forms.TextBox thresholdInputBox;
+        private System.Windows.Forms.TextBox thresholdMinInputBox;
+        private System.Windows.Forms.TextBox thresholdMaxInputBox;
+        private System.Windows.Forms.Button doThreshold;
     }
 }
 

@@ -16,6 +16,9 @@ namespace ImageProccessing_HW1
         private Bitmap openImag;
         private Bitmap afterImag;
         private int actionlistSelect = 0;
+        private int th_min = 0;
+        private int th_max = 255;
+
         public Form1()
         {
             InitializeComponent();
@@ -65,8 +68,10 @@ namespace ImageProccessing_HW1
             switch (actionlistSelect)
             {
                 case 0:
-                    thresholdInputBox.Visible = false;
+                    thresholdMinInputBox.Visible = false;
+                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
+                    doThreshold.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("R channel");
                     subactionList.Items.Add("G Channel");
@@ -74,27 +79,35 @@ namespace ImageProccessing_HW1
                     subactionList.Items.Add("Grayscale");
                     break;
                 case 1:
-                    thresholdInputBox.Visible = false;
+                    thresholdMinInputBox.Visible = false;
+                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
+                    doThreshold.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("Mean Filter");
                     subactionList.Items.Add("Median Filter");
                     break;
                 case 2:
-                    thresholdInputBox.Visible = false;
+                    thresholdMinInputBox.Visible = false;
+                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = false;
+                    doThreshold.Visible = false;
                     HistogramEqualize histogramEq = new HistogramEqualize();
                     afterImgBox.Image = histogramEq.HisEqu(openImag);
                     break;
                 case 3:
                     // show input box
-                    thresholdInputBox.Visible = true;
+                    thresholdMinInputBox.Visible = true;
+                    thresholdMaxInputBox.Visible = true;
                     subactionList.Visible = false;
+                    doThreshold.Visible = true;
                     break;
                 default:
                     // hide input box
-                    thresholdInputBox.Visible = false;
+                    thresholdMinInputBox.Visible = false;
+                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
+                    doThreshold.Visible = false;
                     subactionList.Items.Clear();
                     break;
             }
@@ -151,6 +164,22 @@ namespace ImageProccessing_HW1
                 case 6:
                     break;
             }
+        }
+
+        private void thresholdInputBox_TextChanged(object sender, EventArgs e)
+        {
+            th_min = Convert.ToInt32(thresholdMinInputBox.Text);
+        }
+
+        private void thresholdMaxInputBox_TextChanged(object sender, EventArgs e)
+        {
+            th_max = Convert.ToInt32(thresholdMaxInputBox.Text);
+        }
+
+        private void doThreshold_Click(object sender, EventArgs e)
+        {
+            Threshold thresh = new Threshold();
+            afterImgBox.Image = thresh.UserDefineThreshold(openImag, th_min, th_max);
         }
     }
 }
