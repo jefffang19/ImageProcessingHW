@@ -108,6 +108,8 @@ namespace ImageProccessing_HW1
                     afterImgBox.Image = afterImag;
                     break;
                 case 1:
+                    SmoothFilter smooth = new SmoothFilter();
+                    afterImgBox.Image = smooth.MeanFilter(openImag, 3);
                     break;
                 case 2:
                     break;
