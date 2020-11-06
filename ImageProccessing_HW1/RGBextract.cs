@@ -21,7 +21,7 @@ namespace ImageProccessing_HW1
                     {
                         Color RGB = img.GetPixel(j, i);
                         int r = Convert.ToInt32(RGB.R);
-                        img.SetPixel(j, i, Color.FromArgb(r, 0, 0));
+                        img.SetPixel(j, i, Color.FromArgb(r, r, r));
                     }
                 }
 
@@ -42,7 +42,7 @@ namespace ImageProccessing_HW1
                     {
                         Color RGB = img.GetPixel(j, i);
                         int g = Convert.ToInt32(RGB.G);
-                        img.SetPixel(j, i, Color.FromArgb(00, g, 0));
+                        img.SetPixel(j, i, Color.FromArgb(g, g, g));
                     }
                 }
 
@@ -63,7 +63,7 @@ namespace ImageProccessing_HW1
                     {
                         Color RGB = img.GetPixel(j, i);
                         int b = Convert.ToInt32(RGB.B);
-                        img.SetPixel(j, i, Color.FromArgb(0, 0, b));
+                        img.SetPixel(j, i, Color.FromArgb(b, b, b));
                     }
                 }
 
@@ -87,7 +87,7 @@ namespace ImageProccessing_HW1
                         int r = (int) (Convert.ToInt32(RGB.R) * 0.299);
                         int g = (int) (Convert.ToInt32(RGB.G) * 0.587);
                         int b = (int) (Convert.ToInt32(RGB.B) * 0.114);
-                        img.SetPixel(j, i, Color.FromArgb(r, g, b));
+                        img.SetPixel(j, i, Color.FromArgb(r+g+b, r+g+b, r+g+b));
                     }
                 }
 
