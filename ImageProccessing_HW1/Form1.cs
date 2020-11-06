@@ -64,6 +64,22 @@ namespace ImageProccessing_HW1
             actionlistSelect = actionList.SelectedIndex;
             switch (actionlistSelect)
             {
+                case 0:
+                    thresholdInputBox.Visible = false;
+                    subactionList.Visible = true;
+                    subactionList.Items.Clear();
+                    subactionList.Items.Add("R channel");
+                    subactionList.Items.Add("G Channel");
+                    subactionList.Items.Add("B Channel");
+                    subactionList.Items.Add("Grayscale");
+                    break;
+                case 1:
+                    thresholdInputBox.Visible = false;
+                    subactionList.Visible = true;
+                    subactionList.Items.Clear();
+                    subactionList.Items.Add("Mean Filter");
+                    subactionList.Items.Add("Median Filter");
+                    break;
                 case 3:
                     // show input box
                     thresholdInputBox.Visible = true;
@@ -73,6 +89,7 @@ namespace ImageProccessing_HW1
                     // hide input box
                     thresholdInputBox.Visible = false;
                     subactionList.Visible = true;
+                    subactionList.Items.Clear();
                     break;
             }
 
@@ -109,8 +126,15 @@ namespace ImageProccessing_HW1
                     break;
                 case 1:
                     SmoothFilter smooth = new SmoothFilter();
-                    //afterImgBox.Image = smooth.MeanFilter(openImag, 3);
-                    afterImgBox.Image = smooth.MedianFilter(openImag, 3);
+                    switch (subactionList.SelectedIndex)
+                    {
+                        case 0:
+                            afterImgBox.Image = smooth.MeanFilter(openImag, 3);
+                            break;
+                        case 1:
+                            afterImgBox.Image = smooth.MedianFilter(openImag, 3);
+                            break;
+                    }
                     break;
                 case 2:
                     break;
