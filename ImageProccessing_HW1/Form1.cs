@@ -80,6 +80,12 @@ namespace ImageProccessing_HW1
                     subactionList.Items.Add("Mean Filter");
                     subactionList.Items.Add("Median Filter");
                     break;
+                case 2:
+                    thresholdInputBox.Visible = false;
+                    subactionList.Visible = false;
+                    HistogramEqualize histogramEq = new HistogramEqualize();
+                    afterImgBox.Image = histogramEq.HisEqu(openImag);
+                    break;
                 case 3:
                     // show input box
                     thresholdInputBox.Visible = true;

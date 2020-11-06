@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HistogramEqualize.cs" />
     <Compile Include="Pedding.cs" />
     <Compile Include="RGBextract.cs" />
     <Compile Include="Form1.cs">
