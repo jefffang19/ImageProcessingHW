@@ -109,8 +109,8 @@ namespace ImageProccessing_HW1
                     break;
                 case 1:
                     SmoothFilter smooth = new SmoothFilter();
-                    afterImgBox.Image = smooth.MeanFilter(openImag, 3);
-                    //afterImgBox.Image = smooth.MedianFilter(openImag, 3);
+                    //afterImgBox.Image = smooth.MeanFilter(openImag, 3);
+                    afterImgBox.Image = smooth.MedianFilter(openImag, 3);
                     break;
                 case 2:
                     break;
