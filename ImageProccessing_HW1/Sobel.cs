@@ -12,7 +12,22 @@ namespace ImageProccessing_HW1
         private int[] vertical_filter = new int[] {1, 0, -1, 2, 0, -2, 1, 0, -1};
         private int[] horizontal_filter = new int[] {1, 2, 1, 0, 0, 0, -1, -2, -1};
 
-        public Bitmap vertical(Bitmap ori)
+        public Bitmap Vertical(Bitmap ori)
+        {
+            return applyFilter(ori, vertical_filter);
+        }
+
+        public Bitmap Horizontal(Bitmap ori)
+        {
+            return applyFilter(ori, horizontal_filter);
+        }
+
+        public Bitmap Combined(Bitmap ori)
+        {
+            return applyFilter(applyFilter(ori, vertical_filter), horizontal_filter);
+        }
+
+        public Bitmap applyFilter(Bitmap ori, int[] kernel)
         {
             Pedding pedding = new Pedding();
             Bitmap ped = pedding.pedding(ori);
@@ -28,9 +43,9 @@ namespace ImageProccessing_HW1
                     {
                         for (int j = 0; j < 3; ++j)
                         {
-                            r_sum += Convert.ToInt32(ped.GetPixel(x + j, y + i).R) * vertical_filter[i*3+j];
-                            g_sum += Convert.ToInt32(ped.GetPixel(x + j, y + i).G) * vertical_filter[i * 3 + j];
-                            b_sum += Convert.ToInt32(ped.GetPixel(x + j, y + i).B) * vertical_filter[i * 3 + j];
+                            r_sum += Convert.ToInt32(ped.GetPixel(x + j, y + i).R) * kernel[i * 3 + j];
+                            g_sum += Convert.ToInt32(ped.GetPixel(x + j, y + i).G) * kernel[i * 3 + j];
+                            b_sum += Convert.ToInt32(ped.GetPixel(x + j, y + i).B) * kernel[i * 3 + j];
                         }
                     }
                     // if pixel > 255 then to 255, else if pixel < 0 then to 0

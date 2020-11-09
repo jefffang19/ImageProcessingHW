@@ -36,6 +36,8 @@ namespace ImageProccessing_HW1
                 preImgBox.Image = openImag;
                 afterImgBox.Image = openImag;
             }
+
+            //TODO: clear undo stack
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -109,6 +111,10 @@ namespace ImageProccessing_HW1
                     thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
+                    subactionList.Items.Clear();
+                    subactionList.Items.Add("Vertical");
+                    subactionList.Items.Add("Horizontal");
+                    subactionList.Items.Add("Combined");
                     break;
                 default:
                     // hide input box
@@ -165,7 +171,18 @@ namespace ImageProccessing_HW1
                     break;
                 case 4:
                     Sobel sobel = new Sobel();
-                    afterImgBox.Image = sobel.vertical(openImag);
+                    switch (subactionList.SelectedIndex)
+                    {
+                        case 0:
+                            afterImgBox.Image = sobel.Vertical(openImag);
+                            break;
+                        case 1:
+                            afterImgBox.Image = sobel.Horizontal(openImag);
+                            break;
+                        case 2:
+                            afterImgBox.Image = sobel.Combined(openImag);
+                            break;
+                    }
                     break;
                 case 5:
                     break;
