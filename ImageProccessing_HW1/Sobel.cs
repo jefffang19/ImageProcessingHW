@@ -24,7 +24,14 @@ namespace ImageProccessing_HW1
 
         public Bitmap Combined(Bitmap ori)
         {
-            return applyFilter(applyFilter(ori, vertical_filter), horizontal_filter);
+            //overlay the two results
+            // let vertical be the botton layer
+            Bitmap ver = applyFilter(ori, vertical_filter);
+            // let horizontal be the top layer
+            Bitmap hor = applyFilter(ori, horizontal_filter);
+            hor = SetBlackToTransparent(hor);
+
+            return Overlay(ver, hor);
         }
 
         public Bitmap applyFilter(Bitmap ori, int[] kernel)
@@ -67,23 +74,28 @@ namespace ImageProccessing_HW1
         {
             Threshold thresh = new Threshold();
             Bitmap sobThresh = thresh.UserDefineThreshold(sob, upper, lower);
-            sobThresh = SetBlackToTransparent(sobThresh); // set the black part to transparent
+            sobThresh = SetBlackToTransparent(sobThresh, true); // set the black part to transparent
 
-            Bitmap overlay = new Bitmap(ori.Width, ori.Height);
+            return Overlay(ori, sobThresh);
+        }
+
+        Bitmap Overlay(Bitmap bot, Bitmap top)
+        {
+            Bitmap overlay = new Bitmap(bot.Width, bot.Height);
             // draw the two overlay Bitmap
             using (Graphics g = Graphics.FromImage(overlay))
             {
                 g.Clear(Color.Black); //background
 
                 // draw two layers
-                g.DrawImage(ori, new Rectangle(0,0,ori.Width,ori.Height));
-                g.DrawImage(sobThresh, new Rectangle(0,0,sobThresh.Width, sobThresh.Height));
+                g.DrawImage(bot, new Rectangle(0, 0, bot.Width, bot.Height));
+                g.DrawImage(top, new Rectangle(0, 0, top.Width, top.Height));
             }
 
             return overlay;
         }
 
-        Bitmap SetBlackToTransparent(Bitmap ori)
+        Bitmap SetBlackToTransparent(Bitmap ori, Boolean green = false)
         {
             Bitmap tmp = new Bitmap(ori);
             for (int i = 0; i < tmp.Height; ++i)
@@ -95,7 +107,7 @@ namespace ImageProccessing_HW1
                         tmp.SetPixel(j,i,Color.Transparent);
                     }
                     // if not black, set to green
-                    else
+                    else if(green)
                     {
                         tmp.SetPixel(j,i,Color.Green);
                     }

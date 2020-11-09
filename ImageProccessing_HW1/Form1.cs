@@ -189,12 +189,10 @@ namespace ImageProccessing_HW1
                             break;
                     }
                     break;
-                case 5:
-                    Sobel _sobel = new Sobel();
-                    Bitmap originalImage = undoImages.First();
-                    afterImgBox.Image = _sobel.ThresholdSobel(originalImage, (Bitmap) afterImgBox.Image, 100, 200);
-                    break;
                 case 6:
+                    break;
+                default:
+                    Debug.Assert(false,"ListBox should not apper error");
                     break;
             }
             undoImages.Push(new Bitmap(openImag));
@@ -213,8 +211,21 @@ namespace ImageProccessing_HW1
 
         private void doThreshold_Click(object sender, EventArgs e)
         {
-            Threshold thresh = new Threshold();
-            afterImgBox.Image = thresh.UserDefineThreshold(openImag, th_min, th_max);
+            if (actionList.SelectedIndex == 3)
+            {
+                Threshold thresh = new Threshold();
+                afterImgBox.Image = thresh.UserDefineThreshold(openImag, th_min, th_max);
+            }
+            else if (actionList.SelectedIndex == 5)
+            {
+                Sobel _sobel = new Sobel();
+                Bitmap originalImage = undoImages.First();
+                afterImgBox.Image = _sobel.ThresholdSobel(originalImage, (Bitmap)afterImgBox.Image, 100, 200);
+            }
+            else
+            {
+                Debug.Assert(false, "Threshold Button should not appear error");
+            }
         }
 
         private void button1_Click_2(object sender, EventArgs e)
