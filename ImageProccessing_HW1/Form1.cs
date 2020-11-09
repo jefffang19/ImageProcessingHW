@@ -13,6 +13,8 @@ namespace ImageProccessing_HW1
 {
     public partial class Form1 : Form
     {
+        private Stack<Bitmap> undoImages = new Stack<Bitmap>();
+        private Stack<Bitmap> redoImages = new Stack<Bitmap>();
         private Bitmap openImag;
         private Bitmap afterImag;
         private int actionlistSelect = 0;
@@ -170,6 +172,8 @@ namespace ImageProccessing_HW1
                 case 6:
                     break;
             }
+            undoImages.Push(new Bitmap(openImag));
+            openImag = new Bitmap(afterImgBox.Image);
         }
 
         private void thresholdInputBox_TextChanged(object sender, EventArgs e)
@@ -186,6 +190,15 @@ namespace ImageProccessing_HW1
         {
             Threshold thresh = new Threshold();
             afterImgBox.Image = thresh.UserDefineThreshold(openImag, th_min, th_max);
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            // get openImage stack top
+            openImag = undoImages.First();
+            afterImgBox.Image = openImag;
+            // pop the undo
+            undoImages.Pop();
         }
     }
 }

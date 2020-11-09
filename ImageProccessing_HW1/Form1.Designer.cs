@@ -39,6 +39,7 @@
             this.thresholdMinInputBox = new System.Windows.Forms.TextBox();
             this.thresholdMaxInputBox = new System.Windows.Forms.TextBox();
             this.doThreshold = new System.Windows.Forms.Button();
+            this.undoBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).BeginInit();
             this.SuspendLayout();
@@ -151,11 +152,22 @@
             this.doThreshold.Visible = false;
             this.doThreshold.Click += new System.EventHandler(this.doThreshold_Click);
             // 
+            // undoBtn
+            // 
+            this.undoBtn.Location = new System.Drawing.Point(930, 499);
+            this.undoBtn.Name = "undoBtn";
+            this.undoBtn.Size = new System.Drawing.Size(75, 23);
+            this.undoBtn.TabIndex = 9;
+            this.undoBtn.Text = "undo";
+            this.undoBtn.UseVisualStyleBackColor = true;
+            this.undoBtn.Click += new System.EventHandler(this.button1_Click_2);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1195, 598);
+            this.Controls.Add(this.undoBtn);
             this.Controls.Add(this.doThreshold);
             this.Controls.Add(this.thresholdMaxInputBox);
             this.Controls.Add(this.thresholdMinInputBox);
@@ -189,6 +201,7 @@
         private System.Windows.Forms.TextBox thresholdMinInputBox;
         private System.Windows.Forms.TextBox thresholdMaxInputBox;
         private System.Windows.Forms.Button doThreshold;
+        private System.Windows.Forms.Button undoBtn;
     }
 }
 
