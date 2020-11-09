@@ -18,7 +18,7 @@ namespace ImageProccessing_HW1
         private int actionlistSelect = 0;
         private int th_min = 0;
         private int th_max = 255;
-
+         
         public Form1()
         {
             InitializeComponent();
@@ -102,6 +102,12 @@ namespace ImageProccessing_HW1
                     subactionList.Visible = false;
                     doThreshold.Visible = true;
                     break;
+                case 4:
+                    thresholdMinInputBox.Visible = false;
+                    thresholdMaxInputBox.Visible = false;
+                    subactionList.Visible = true;
+                    doThreshold.Visible = false;
+                    break;
                 default:
                     // hide input box
                     thresholdMinInputBox.Visible = false;
@@ -155,9 +161,9 @@ namespace ImageProccessing_HW1
                             break;
                     }
                     break;
-                case 2:
-                    break;
                 case 4:
+                    Sobel sobel = new Sobel();
+                    afterImgBox.Image = sobel.vertical(openImag);
                     break;
                 case 5:
                     break;
