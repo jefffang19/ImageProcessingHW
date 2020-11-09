@@ -125,6 +125,12 @@ namespace ImageProccessing_HW1
                     subactionList.Visible = false;
                     doThreshold.Visible = true;
                     break;
+                case 6:
+                    MatrixThree mat1 = new MatrixThree(new int[]{9,8,7,6,5,4,3,2,1}, 9);
+                    MatrixThree mat2 = new MatrixThree(new int[]{1,2,3,4,5,6,7,8,9}, 9);
+                    int[] mat3 = mat1.Mut(mat2).Tolist();
+
+                    break;
                 default:
                     // hide input box
                     thresholdMinInputBox.Visible = false;
