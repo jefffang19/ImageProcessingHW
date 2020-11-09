@@ -62,5 +62,47 @@ namespace ImageProccessing_HW1
 
             return after;
         }
+
+        public Bitmap ThresholdSobel(Bitmap ori, Bitmap sob, int upper, int lower)
+        {
+            Threshold thresh = new Threshold();
+            Bitmap sobThresh = thresh.UserDefineThreshold(sob, upper, lower);
+            sobThresh = SetBlackToTransparent(sobThresh); // set the black part to transparent
+
+            Bitmap overlay = new Bitmap(ori.Width, ori.Height);
+            // draw the two overlay Bitmap
+            using (Graphics g = Graphics.FromImage(overlay))
+            {
+                g.Clear(Color.Black); //background
+
+                // draw two layers
+                g.DrawImage(ori, new Rectangle(0,0,ori.Width,ori.Height));
+                g.DrawImage(sobThresh, new Rectangle(0,0,sobThresh.Width, sobThresh.Height));
+            }
+
+            return overlay;
+        }
+
+        Bitmap SetBlackToTransparent(Bitmap ori)
+        {
+            Bitmap tmp = new Bitmap(ori);
+            for (int i = 0; i < tmp.Height; ++i)
+            {
+                for (int j = 0; j < tmp.Width; ++j)
+                {
+                    if (tmp.GetPixel(j, i).ToArgb() == Color.Black.ToArgb())
+                    {
+                        tmp.SetPixel(j,i,Color.Transparent);
+                    }
+                    // if not black, set to green
+                    else
+                    {
+                        tmp.SetPixel(j,i,Color.Green);
+                    }
+                }
+            }
+
+            return tmp;
+        }
     }
 }

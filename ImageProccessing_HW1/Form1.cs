@@ -98,6 +98,9 @@ namespace ImageProccessing_HW1
                     doThreshold.Visible = false;
                     HistogramEqualize histogramEq = new HistogramEqualize();
                     afterImgBox.Image = histogramEq.HisEqu(openImag);
+                    //after image process function, add undo
+                    undoImages.Push(new Bitmap(openImag));
+                    openImag = new Bitmap(afterImgBox.Image);
                     break;
                 case 3:
                     // show input box
@@ -115,6 +118,8 @@ namespace ImageProccessing_HW1
                     subactionList.Items.Add("Vertical");
                     subactionList.Items.Add("Horizontal");
                     subactionList.Items.Add("Combined");
+                    break;
+                case 5:
                     break;
                 default:
                     // hide input box
@@ -185,6 +190,9 @@ namespace ImageProccessing_HW1
                     }
                     break;
                 case 5:
+                    Sobel _sobel = new Sobel();
+                    Bitmap originalImage = undoImages.First();
+                    afterImgBox.Image = _sobel.ThresholdSobel(originalImage, (Bitmap) afterImgBox.Image, 100, 200);
                     break;
                 case 6:
                     break;
