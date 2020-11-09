@@ -36,8 +36,8 @@ namespace ImageProccessing_HW1
                 preImgBox.Image = openImag;
                 afterImgBox.Image = openImag;
             }
-
-            //TODO: clear undo stack
+            
+            undoImages.Clear();
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
