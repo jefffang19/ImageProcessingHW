@@ -23,6 +23,8 @@ namespace ImageProccessing_HW1
         int[] after_y = new int[3];
         private int after_y_n = 0;
 
+        private MatrixThree transform;
+
         public void AddPointToOrigin(int x, int y)
         {
             Debug.Assert(origin_x_n<3, "Origin Point Already full");
@@ -67,23 +69,33 @@ namespace ImageProccessing_HW1
 
             // aft = T * ori
             // aft * ori.inv() = T
-            MatrixThree transform = aft.Mut(ori.Inv());
-
-            double[] debg = ori.Inv().Tolist();
+            transform = aft.Mut(ori.Inv());
 
             return transform;
         }
 
-        public double CalculateZoomX()
+        double CalculateZoomX()
         {
             return Math.Sqrt(Math.Pow(after_x[0] - after_x[1], 2) + Math.Pow(after_y[0] - after_y[1], 2))/
                 Math.Sqrt(Math.Pow(origin_x[0]-origin_x[1],2) + Math.Pow(origin_y[0]-origin_y[1],2));
         }
 
-        public double CalculateZoomY()
+        double CalculateZoomY()
         {
             return Math.Sqrt(Math.Pow(after_x[0] - after_x[2], 2) + Math.Pow(after_y[0] - after_y[2], 2)) /
                    Math.Sqrt(Math.Pow(origin_x[0] - origin_x[2], 2) + Math.Pow(origin_y[0] - origin_y[2], 2));
+        }
+
+        public MatrixThree ScalingMatrix()
+        {
+            Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
+            return new MatrixThree(new double[]{CalculateZoomX(),0,0,0,CalculateZoomY(),0,0,0,1},9);
+        }
+
+        public MatrixThree TranslateMatrix()
+        {
+            Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
+            return new MatrixThree(new double[] { 1, 0, transform.Tolist()[2], 0, 1, transform.Tolist()[5], 0, 0, 1 }, 9);
         }
     }
 }
