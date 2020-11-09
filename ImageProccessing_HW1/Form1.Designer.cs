@@ -170,9 +170,10 @@
             this.mouseLabel.AutoSize = true;
             this.mouseLabel.Location = new System.Drawing.Point(1348, 81);
             this.mouseLabel.Name = "mouseLabel";
-            this.mouseLabel.Size = new System.Drawing.Size(79, 15);
+            this.mouseLabel.Size = new System.Drawing.Size(43, 15);
             this.mouseLabel.TabIndex = 10;
-            this.mouseLabel.Text = "Mouse Click";
+            this.mouseLabel.Text = "mouse";
+            this.mouseLabel.UseMnemonic = false;
             this.mouseLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // loadImg2

@@ -73,5 +73,17 @@ namespace ImageProccessing_HW1
 
             return transform;
         }
+
+        public double CalculateZoomX()
+        {
+            return Math.Sqrt(Math.Pow(after_x[0] - after_x[1], 2) + Math.Pow(after_y[0] - after_y[1], 2))/
+                Math.Sqrt(Math.Pow(origin_x[0]-origin_x[1],2) + Math.Pow(origin_y[0]-origin_y[1],2));
+        }
+
+        public double CalculateZoomY()
+        {
+            return Math.Sqrt(Math.Pow(after_x[0] - after_x[2], 2) + Math.Pow(after_y[0] - after_y[2], 2)) /
+                   Math.Sqrt(Math.Pow(origin_x[0] - origin_x[2], 2) + Math.Pow(origin_y[0] - origin_y[2], 2));
+        }
     }
 }

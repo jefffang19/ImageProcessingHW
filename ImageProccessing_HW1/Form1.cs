@@ -140,7 +140,10 @@ namespace ImageProccessing_HW1
                     break;
                 case 6:
                     mouseLabel.Visible = true;
+                    mouseLabel.Text = "Mouse Click:Leftup,\nRightup,\nLeftDown";
                     double[] mat3 = reg.FindTransform().Tolist();
+                    double zoomx = reg.CalculateZoomX();
+                    double zoomy = reg.CalculateZoomY();
                     break;
                 default:
                     // hide input box
