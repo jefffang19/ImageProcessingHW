@@ -20,6 +20,10 @@ namespace ImageProccessing_HW1
         private int actionlistSelect = 0;
         private int th_min = 0;
         private int th_max = 255;
+
+        Registration reg = new Registration();
+        private int oriImagClicks = 0;
+        private int aftImagClick = 0;
          
         public Form1()
         {
@@ -47,7 +51,16 @@ namespace ImageProccessing_HW1
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            // if more then 3 clicked
+            if (oriImagClicks >= 3) return;
 
+            // get mouse args
+            var mouseArgs = (MouseEventArgs)e;
+            reg.AddPointToOrigin(mouseArgs.X, mouseArgs.Y);
+            ++oriImagClicks;
+
+            // update coordinate display
+            mouseLabel.Text = reg.CurrentPoints();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -126,10 +139,8 @@ namespace ImageProccessing_HW1
                     doThreshold.Visible = true;
                     break;
                 case 6:
-                    MatrixThree mat1 = new MatrixThree(new double[]{1,0,1,-4,1,-1,6,-2,1}, 9);
-                    //MatrixThree mat2 = new MatrixThree(new double[]{1,2,3,4,5,6,7,8,9}, 9);
-                    double[] mat3 = mat1.Inv().Tolist();
-
+                    mouseLabel.Visible = true;
+                    double[] mat3 = reg.FindTransform().Tolist();
                     break;
                 default:
                     // hide input box
@@ -138,6 +149,7 @@ namespace ImageProccessing_HW1
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
                     subactionList.Items.Clear();
+                    //mouseLabel.Visible = false;
                     break;
             }
 
@@ -248,6 +260,36 @@ namespace ImageProccessing_HW1
             afterImgBox.Image = openImag;
             // pop the undo
             undoImages.Pop();
+        }
+
+        private void afterImgBox_Click(object sender, EventArgs e)
+        {
+            // if more then 3 clicked
+            if (aftImagClick >= 3) return;
+
+            // get mouse args
+            var mouseArgs = (MouseEventArgs)e;
+            reg.AddPointToAfter(mouseArgs.X, mouseArgs.Y);
+            ++aftImagClick;
+
+            // update coordinate display
+            mouseLabel.Text = reg.CurrentPoints();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_3(object sender, EventArgs e)
+        {
+            // load iamge
+            openFileDialog1.Filter = "All Files|*.*|Bitmap Files (.bmp)|*.bmp|Jpeg Files(.jpg)|*.jpg";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                afterImag = new Bitmap(openFileDialog1.FileName);
+                afterImgBox.Image = afterImag;
+            }
         }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="HistogramEqualize.cs" />
     <Compile Include="MatrixThree.cs" />
     <Compile Include="Pedding.cs" />
+    <Compile Include="Registration.cs" />
     <Compile Include="RGBextract.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

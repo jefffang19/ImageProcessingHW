@@ -40,6 +40,8 @@
             this.thresholdMaxInputBox = new System.Windows.Forms.TextBox();
             this.doThreshold = new System.Windows.Forms.Button();
             this.undoBtn = new System.Windows.Forms.Button();
+            this.mouseLabel = new System.Windows.Forms.Label();
+            this.loadImg2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).BeginInit();
             this.SuspendLayout();
@@ -60,7 +62,7 @@
             this.preImgBox.Location = new System.Drawing.Point(13, 1);
             this.preImgBox.Margin = new System.Windows.Forms.Padding(4);
             this.preImgBox.Name = "preImgBox";
-            this.preImgBox.Size = new System.Drawing.Size(531, 475);
+            this.preImgBox.Size = new System.Drawing.Size(600, 400);
             this.preImgBox.TabIndex = 1;
             this.preImgBox.TabStop = false;
             this.preImgBox.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -82,11 +84,12 @@
             // 
             // afterImgBox
             // 
-            this.afterImgBox.Location = new System.Drawing.Point(551, 1);
+            this.afterImgBox.Location = new System.Drawing.Point(676, 1);
             this.afterImgBox.Name = "afterImgBox";
-            this.afterImgBox.Size = new System.Drawing.Size(504, 475);
+            this.afterImgBox.Size = new System.Drawing.Size(666, 490);
             this.afterImgBox.TabIndex = 3;
             this.afterImgBox.TabStop = false;
+            this.afterImgBox.Click += new System.EventHandler(this.afterImgBox_Click);
             // 
             // actionList
             // 
@@ -162,11 +165,33 @@
             this.undoBtn.UseVisualStyleBackColor = true;
             this.undoBtn.Click += new System.EventHandler(this.button1_Click_2);
             // 
+            // mouseLabel
+            // 
+            this.mouseLabel.AutoSize = true;
+            this.mouseLabel.Location = new System.Drawing.Point(1348, 81);
+            this.mouseLabel.Name = "mouseLabel";
+            this.mouseLabel.Size = new System.Drawing.Size(79, 15);
+            this.mouseLabel.TabIndex = 10;
+            this.mouseLabel.Text = "Mouse Click";
+            this.mouseLabel.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // loadImg2
+            // 
+            this.loadImg2.Location = new System.Drawing.Point(41, 540);
+            this.loadImg2.Name = "loadImg2";
+            this.loadImg2.Size = new System.Drawing.Size(106, 23);
+            this.loadImg2.TabIndex = 11;
+            this.loadImg2.Text = "Load_Image2";
+            this.loadImg2.UseVisualStyleBackColor = true;
+            this.loadImg2.Click += new System.EventHandler(this.button1_Click_3);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1195, 598);
+            this.ClientSize = new System.Drawing.Size(1490, 679);
+            this.Controls.Add(this.loadImg2);
+            this.Controls.Add(this.mouseLabel);
             this.Controls.Add(this.undoBtn);
             this.Controls.Add(this.doThreshold);
             this.Controls.Add(this.thresholdMaxInputBox);
@@ -202,6 +227,8 @@
         private System.Windows.Forms.TextBox thresholdMaxInputBox;
         private System.Windows.Forms.Button doThreshold;
         private System.Windows.Forms.Button undoBtn;
+        private System.Windows.Forms.Label mouseLabel;
+        private System.Windows.Forms.Button loadImg2;
     }
 }
 
