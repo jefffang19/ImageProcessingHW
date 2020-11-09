@@ -120,6 +120,10 @@ namespace ImageProccessing_HW1
                     subactionList.Items.Add("Combined");
                     break;
                 case 5:
+                    thresholdMinInputBox.Visible = true;
+                    thresholdMaxInputBox.Visible = true;
+                    subactionList.Visible = false;
+                    doThreshold.Visible = true;
                     break;
                 default:
                     // hide input box
@@ -220,12 +224,15 @@ namespace ImageProccessing_HW1
             {
                 Sobel _sobel = new Sobel();
                 Bitmap originalImage = undoImages.First();
-                afterImgBox.Image = _sobel.ThresholdSobel(originalImage, (Bitmap)afterImgBox.Image, 100, 200);
+                afterImgBox.Image = _sobel.ThresholdSobel(originalImage, (Bitmap)afterImgBox.Image, th_min, th_max);
             }
             else
             {
                 Debug.Assert(false, "Threshold Button should not appear error");
             }
+            //after image process function, add undo
+            undoImages.Push(new Bitmap(openImag));
+            openImag = new Bitmap(afterImgBox.Image);
         }
 
         private void button1_Click_2(object sender, EventArgs e)
