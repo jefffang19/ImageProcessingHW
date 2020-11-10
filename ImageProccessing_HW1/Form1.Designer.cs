@@ -62,7 +62,7 @@
             this.preImgBox.Location = new System.Drawing.Point(13, 1);
             this.preImgBox.Margin = new System.Windows.Forms.Padding(4);
             this.preImgBox.Name = "preImgBox";
-            this.preImgBox.Size = new System.Drawing.Size(600, 400);
+            this.preImgBox.Size = new System.Drawing.Size(666, 490);
             this.preImgBox.TabIndex = 1;
             this.preImgBox.TabStop = false;
             this.preImgBox.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -84,7 +84,7 @@
             // 
             // afterImgBox
             // 
-            this.afterImgBox.Location = new System.Drawing.Point(676, 1);
+            this.afterImgBox.Location = new System.Drawing.Point(690, 1);
             this.afterImgBox.Name = "afterImgBox";
             this.afterImgBox.Size = new System.Drawing.Size(666, 490);
             this.afterImgBox.TabIndex = 3;
@@ -168,7 +168,7 @@
             // mouseLabel
             // 
             this.mouseLabel.AutoSize = true;
-            this.mouseLabel.Location = new System.Drawing.Point(1348, 81);
+            this.mouseLabel.Location = new System.Drawing.Point(1359, 81);
             this.mouseLabel.Name = "mouseLabel";
             this.mouseLabel.Size = new System.Drawing.Size(43, 15);
             this.mouseLabel.TabIndex = 10;

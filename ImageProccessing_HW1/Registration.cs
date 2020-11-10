@@ -55,6 +55,31 @@ namespace ImageProccessing_HW1
             return ret;
         }
 
+        public Bitmap RegisterImage(Bitmap aft)
+        {
+            Bitmap ori = new Bitmap(aft.Width, aft.Height);
+            for (int i = 0; i < ori.Height; i++)
+            {
+                for (int j = 0; j < ori.Width; j++)
+                {
+                    double[] afterPoints = transform.Mut(new MatrixThree(new double[] {j, i, 1}, 3)).Tolist();
+
+                    int[] stemPoints = new int[2];
+                    for (int k = 0; k < 2; k++)
+                    {
+                        if (afterPoints[k] < 0) stemPoints[k] = 0;
+                        else stemPoints[k] = (int) Math.Round(afterPoints[k]);
+                    }
+                    if (stemPoints[0] >= aft.Width) stemPoints[0] = aft.Width - 1;
+                    if (stemPoints[1] >= aft.Height) stemPoints[1] = aft.Height - 1;
+
+                    ori.SetPixel(j,i,aft.GetPixel(stemPoints[0], stemPoints[1]));
+                    //TODO: shift picture
+                }
+            }
+
+            return ori;
+        }
 
 
         public MatrixThree FindTransform()
@@ -84,6 +109,30 @@ namespace ImageProccessing_HW1
         {
             return Math.Sqrt(Math.Pow(after_x[0] - after_x[2], 2) + Math.Pow(after_y[0] - after_y[2], 2)) /
                    Math.Sqrt(Math.Pow(origin_x[0] - origin_x[2], 2) + Math.Pow(origin_y[0] - origin_y[2], 2));
+        }
+
+        public MatrixThree ReverseTransform()
+        {
+            Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
+            return transform.Inv();
+        }
+
+        public double CalculateCosAngle()
+        {
+            MatrixThree rotate = RotateMatrix();
+            double cosAngle = (rotate.Tolist()[0] + rotate.Tolist()[4])/2;
+            return Radian2Degree(Math.Acos(cosAngle));
+        }
+
+        double Radian2Degree(double rad)
+        {
+            return rad * 180 / Math.PI;
+        }
+
+        public MatrixThree RotateMatrix()
+        {
+            Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
+            return TranslateMatrix().Inv().Mut(ScalingMatrix().Inv()).Mut(FindTransform());
         }
 
         public MatrixThree ScalingMatrix()

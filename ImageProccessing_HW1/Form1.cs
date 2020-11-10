@@ -144,6 +144,10 @@ namespace ImageProccessing_HW1
                     double[] transmat = reg.FindTransform().Tolist();
                     double[] offset = reg.TranslateMatrix().Tolist();
                     double[] scale = reg.ScalingMatrix().Tolist();
+                    double[] rotate = reg.TranslateMatrix().Inv().Mut(reg.ScalingMatrix().Inv()).Mut(reg.FindTransform()).Tolist();
+                    double cosAngle = reg.CalculateCosAngle();
+                    double[] revAngle = reg.ReverseTransform().Tolist();
+                    afterImgBox.Image = reg.RegisterImage(afterImag);
                     break;
                 default:
                     // hide input box
