@@ -62,7 +62,7 @@ namespace ImageProccessing_HW1
             {
                 for (int j = 0; j < ori.Width; j++)
                 {
-                    double[] afterPoints = transform.Mut(new MatrixThree(new double[] {j, i, 1}, 3)).Tolist();
+                    double[] afterPoints = CleanTransitionMatrix().Mut(new MatrixThree(new double[] {j, i, 1}, 3)).Tolist();
 
                     int[] stemPoints = new int[2];
                     for (int k = 0; k < 2; k++)
@@ -111,10 +111,10 @@ namespace ImageProccessing_HW1
                    Math.Sqrt(Math.Pow(origin_x[0] - origin_x[2], 2) + Math.Pow(origin_y[0] - origin_y[2], 2));
         }
 
-        public MatrixThree ReverseTransform()
+        public double[] CalculateScaleFactor()
         {
-            Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
-            return transform.Inv();
+            double[] scal = ScalingMatrix().Tolist();
+            return new double[]{scal[0], scal[4]};
         }
 
         public double CalculateCosAngle()
@@ -129,22 +129,27 @@ namespace ImageProccessing_HW1
             return rad * 180 / Math.PI;
         }
 
-        public MatrixThree RotateMatrix()
+        MatrixThree RotateMatrix()
         {
             Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
             return TranslateMatrix().Inv().Mut(ScalingMatrix().Inv()).Mut(FindTransform());
         }
 
-        public MatrixThree ScalingMatrix()
+        MatrixThree ScalingMatrix()
         {
             Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
             return new MatrixThree(new double[]{CalculateZoomX(),0,0,0,CalculateZoomY(),0,0,0,1},9);
         }
 
-        public MatrixThree TranslateMatrix()
+        MatrixThree TranslateMatrix()
         {
             Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
             return new MatrixThree(new double[] { 1, 0, transform.Tolist()[2], 0, 1, transform.Tolist()[5], 0, 0, 1 }, 9);
+        }
+
+        MatrixThree CleanTransitionMatrix()
+        {
+            return ScalingMatrix().Mut(RotateMatrix()).Mut(TranslateMatrix());
         }
     }
 }

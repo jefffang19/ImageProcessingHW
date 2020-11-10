@@ -141,12 +141,9 @@ namespace ImageProccessing_HW1
                 case 6:
                     mouseLabel.Visible = true;
                     mouseLabel.Text = "Mouse Click:Leftup,\nRightup,\nLeftDown";
-                    double[] transmat = reg.FindTransform().Tolist();
-                    double[] offset = reg.TranslateMatrix().Tolist();
-                    double[] scale = reg.ScalingMatrix().Tolist();
-                    double[] rotate = reg.TranslateMatrix().Inv().Mut(reg.ScalingMatrix().Inv()).Mut(reg.FindTransform()).Tolist();
+                    double[] transitionMatrix = reg.FindTransform().Tolist(); // this function call is required
                     double cosAngle = reg.CalculateCosAngle();
-                    double[] revAngle = reg.ReverseTransform().Tolist();
+                    double[] scaleFactory = reg.CalculateScaleFactor();
                     afterImgBox.Image = reg.RegisterImage(afterImag);
                     break;
                 default:

@@ -180,7 +180,7 @@
             // 
             this.loadImg2.Location = new System.Drawing.Point(41, 540);
             this.loadImg2.Name = "loadImg2";
-            this.loadImg2.Size = new System.Drawing.Size(106, 23);
+            this.loadImg2.Size = new System.Drawing.Size(106, 32);
             this.loadImg2.TabIndex = 11;
             this.loadImg2.Text = "Load_Image2";
             this.loadImg2.UseVisualStyleBackColor = true;
