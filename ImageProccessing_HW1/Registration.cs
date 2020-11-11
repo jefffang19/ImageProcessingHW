@@ -162,6 +162,14 @@ namespace ImageProccessing_HW1
                    Math.Sqrt(Math.Pow(origin_x[0] - origin_x[2], 2) + Math.Pow(origin_y[0] - origin_y[2], 2));
         }
 
+        public string CalculateRegAttr()
+        {
+            double[] scalefac = CalculateScaleFactor();
+            string s = string.Format("Scaling Factor x:{0}\nScaling Factor y:{1}\nCosine Angle theta:{2}", scalefac[0], scalefac[1], CalculateCosAngle());
+
+            return s;
+        }
+
         public double[] CalculateScaleFactor()
         {
             double[] scal = ScalingMatrix().Tolist();

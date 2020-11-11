@@ -42,6 +42,8 @@
             this.undoBtn = new System.Windows.Forms.Button();
             this.mouseLabel = new System.Windows.Forms.Label();
             this.loadImg2 = new System.Windows.Forms.Button();
+            this.registration = new System.Windows.Forms.Button();
+            this.regAttr = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +78,7 @@
             // 
             this.saveBtn.Location = new System.Drawing.Point(778, 503);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(75, 23);
+            this.saveBtn.Size = new System.Drawing.Size(75, 30);
             this.saveBtn.TabIndex = 2;
             this.saveBtn.Text = "Save Image";
             this.saveBtn.UseVisualStyleBackColor = true;
@@ -148,7 +150,7 @@
             // 
             this.doThreshold.Location = new System.Drawing.Point(645, 563);
             this.doThreshold.Name = "doThreshold";
-            this.doThreshold.Size = new System.Drawing.Size(75, 23);
+            this.doThreshold.Size = new System.Drawing.Size(75, 32);
             this.doThreshold.TabIndex = 8;
             this.doThreshold.Text = "threshold";
             this.doThreshold.UseVisualStyleBackColor = true;
@@ -157,9 +159,9 @@
             // 
             // undoBtn
             // 
-            this.undoBtn.Location = new System.Drawing.Point(930, 499);
+            this.undoBtn.Location = new System.Drawing.Point(930, 503);
             this.undoBtn.Name = "undoBtn";
-            this.undoBtn.Size = new System.Drawing.Size(75, 23);
+            this.undoBtn.Size = new System.Drawing.Size(75, 30);
             this.undoBtn.TabIndex = 9;
             this.undoBtn.Text = "undo";
             this.undoBtn.UseVisualStyleBackColor = true;
@@ -174,6 +176,7 @@
             this.mouseLabel.TabIndex = 10;
             this.mouseLabel.Text = "mouse";
             this.mouseLabel.UseMnemonic = false;
+            this.mouseLabel.Visible = false;
             this.mouseLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // loadImg2
@@ -184,13 +187,37 @@
             this.loadImg2.TabIndex = 11;
             this.loadImg2.Text = "Load_Image2";
             this.loadImg2.UseVisualStyleBackColor = true;
+            this.loadImg2.Visible = false;
             this.loadImg2.Click += new System.EventHandler(this.button1_Click_3);
+            // 
+            // registration
+            // 
+            this.registration.Location = new System.Drawing.Point(746, 563);
+            this.registration.Name = "registration";
+            this.registration.Size = new System.Drawing.Size(107, 32);
+            this.registration.TabIndex = 12;
+            this.registration.Text = "Do_Regist";
+            this.registration.UseVisualStyleBackColor = true;
+            this.registration.Visible = false;
+            this.registration.Click += new System.EventHandler(this.registration_Click);
+            // 
+            // regAttr
+            // 
+            this.regAttr.AutoSize = true;
+            this.regAttr.Location = new System.Drawing.Point(1107, 507);
+            this.regAttr.Name = "regAttr";
+            this.regAttr.Size = new System.Drawing.Size(140, 15);
+            this.regAttr.TabIndex = 13;
+            this.regAttr.Text = "Registration_Attruibute";
+            this.regAttr.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1490, 679);
+            this.Controls.Add(this.regAttr);
+            this.Controls.Add(this.registration);
             this.Controls.Add(this.loadImg2);
             this.Controls.Add(this.mouseLabel);
             this.Controls.Add(this.undoBtn);
@@ -230,6 +257,8 @@
         private System.Windows.Forms.Button undoBtn;
         private System.Windows.Forms.Label mouseLabel;
         private System.Windows.Forms.Button loadImg2;
+        private System.Windows.Forms.Button registration;
+        private System.Windows.Forms.Label regAttr;
     }
 }
 

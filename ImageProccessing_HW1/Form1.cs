@@ -89,6 +89,9 @@ namespace ImageProccessing_HW1
                     thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
+                    regAttr.Visible = false;
+                    registration.Visible = false;
+                    loadImg2.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("R channel");
                     subactionList.Items.Add("G Channel");
@@ -100,6 +103,9 @@ namespace ImageProccessing_HW1
                     thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
+                    regAttr.Visible = false;
+                    registration.Visible = false;
+                    loadImg2.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("Mean Filter");
                     subactionList.Items.Add("Median Filter");
@@ -109,6 +115,9 @@ namespace ImageProccessing_HW1
                     thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = false;
                     doThreshold.Visible = false;
+                    regAttr.Visible = false;
+                    registration.Visible = false;
+                    loadImg2.Visible = false;
                     HistogramEqualize histogramEq = new HistogramEqualize();
                     afterImgBox.Image = histogramEq.HisEqu(openImag);
                     //after image process function, add undo
@@ -121,12 +130,18 @@ namespace ImageProccessing_HW1
                     thresholdMaxInputBox.Visible = true;
                     subactionList.Visible = false;
                     doThreshold.Visible = true;
+                    regAttr.Visible = false;
+                    registration.Visible = false;
+                    loadImg2.Visible = false;
                     break;
                 case 4:
                     thresholdMinInputBox.Visible = false;
                     thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
+                    regAttr.Visible = false;
+                    registration.Visible = false;
+                    loadImg2.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("Vertical");
                     subactionList.Items.Add("Horizontal");
@@ -137,14 +152,21 @@ namespace ImageProccessing_HW1
                     thresholdMaxInputBox.Visible = true;
                     subactionList.Visible = false;
                     doThreshold.Visible = true;
+                    regAttr.Visible = false;
+                    registration.Visible = false;
+                    loadImg2.Visible = false;
                     break;
                 case 6:
+                    oriImagClicks = 0;
+                    aftImagClick = 0;
+                    thresholdMinInputBox.Visible = false;
+                    thresholdMaxInputBox.Visible = false;
+                    subactionList.Visible = false;
+                    doThreshold.Visible = false;
+                    registration.Visible = true;
                     mouseLabel.Visible = true;
-                    mouseLabel.Text = "Mouse Click:Leftup,\nRightup,\nLeftDown";
-                    double[] transitionMatrix = reg.FindTransform().Tolist(); // this function call is required
-                    double cosAngle = reg.CalculateCosAngle();
-                    double[] scaleFactory = reg.CalculateScaleFactor();
-                    afterImgBox.Image = reg.NewRegisterImage(afterImag, openImag.Width, openImag.Height);
+                    loadImg2.Visible = true;
+                    mouseLabel.Text = "Mouse Click:Leftup,\nRightup,\nLeftDown\nRightDown\n";
                     break;
                 default:
                     // hide input box
@@ -153,7 +175,10 @@ namespace ImageProccessing_HW1
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
                     subactionList.Items.Clear();
-                    //mouseLabel.Visible = false;
+                    mouseLabel.Visible = false;
+                    regAttr.Visible = false;
+                    registration.Visible = false;
+                    loadImg2.Visible = false;
                     break;
             }
 
@@ -214,8 +239,6 @@ namespace ImageProccessing_HW1
                             afterImgBox.Image = sobel.Combined(openImag);
                             break;
                     }
-                    break;
-                case 6:
                     break;
                 default:
                     Debug.Assert(false,"ListBox should not apper error");
@@ -294,6 +317,21 @@ namespace ImageProccessing_HW1
                 afterImag = new Bitmap(openFileDialog1.FileName);
                 afterImgBox.Image = afterImag;
             }
+        }
+
+        private void registration_Click(object sender, EventArgs e)
+        {
+            double[] transitionMatrix = reg.FindTransform().Tolist(); // this function call is required
+            //double cosAngle = reg.CalculateCosAngle();
+            //double[] scaleFactory = reg.CalculateScaleFactor();
+            afterImgBox.Image = reg.NewRegisterImage(afterImag, openImag.Width, openImag.Height);
+            regAttr.Visible = true;
+            regAttr.Text = reg.CalculateRegAttr();
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
