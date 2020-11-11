@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +26,9 @@ namespace ImageProccessing_HW1
         private int after_y_n = 0;
 
         private MatrixThree transform;
+
+        private float[] cx;
+        private float[] cy;
 
         public void AddPointToOrigin(int x, int y)
         {
@@ -84,15 +88,13 @@ namespace ImageProccessing_HW1
 
         public Bitmap NewRegisterImage(Bitmap aft, int wid, int hi)
         {
-            double[] cx = new double[]{ 6.46215144e-01, -3.71092912e-01, -2.54383841e-05, 1.24624759e+02 };
-            double[] cy = new double[]{ 3.70682231e-01, 6.29337309e-01, 3.69128499e-05, 2.45540046 };
             Bitmap ori = new Bitmap(wid, hi);
             for (int i = 0; i < ori.Height; i++)
             {
                 for (int j = 0; j < ori.Width; j++)
                 {
-                    double _x = j * cx[0] + i * cx[1] + i * j * cx[2] + cx[3];
-                    double _y = j * cy[0] + i * cy[1] + i * j * cy[2] + cy[3];
+                    float _x = j * cx[0] + i * cx[1] + i * j * cx[2] + cx[3];
+                    float _y = j * cy[0] + i * cy[1] + i * j * cy[2] + cy[3];
                     int[] stemPoints = new int[2];
 
                     if (_x < 0) stemPoints[0] = 0;
@@ -104,7 +106,6 @@ namespace ImageProccessing_HW1
                     if (stemPoints[1] >= aft.Height) stemPoints[1] = aft.Height - 1;
 
                     ori.SetPixel(j, i, aft.GetPixel(stemPoints[0], stemPoints[1]));
-                    //TODO: shift picture
                 }
             }
 
@@ -126,7 +127,27 @@ namespace ImageProccessing_HW1
             // aft * ori.inv() = T
             transform = aft.Mut(ori.Inv());
 
+            NewFindTransform(); // find cx and cy
+
             return transform;
+        }
+
+        void NewFindTransform()
+        {
+            Matrix4x4 oriMatrix = new Matrix4x4(origin_x[0], origin_x[1], origin_x[2], origin_x[3], 
+                                                origin_y[0], origin_y[1], origin_y[2], origin_y[3],
+                                                origin_x[0]*origin_y[0], origin_x[1]*origin_y[1], origin_x[2]*origin_y[2], origin_x[3]*origin_y[3],
+                                                1.0f, 1.0f, 1.0f, 1.0f);
+            Matrix4x4 aftMatrix = new Matrix4x4(after_x[0], after_x[1], after_x[2], after_x[3],
+                                                after_y[0], after_y[1], after_y[2], after_y[3],
+                                                0f, 0f, 0f, 0f,
+                                                0f, 0f, 0f, 0f);
+            Matrix4x4 oriInvMatrix;
+            Matrix4x4.Invert(oriMatrix, out oriInvMatrix);
+            Matrix4x4 transformMatrix = Matrix4x4.Multiply(aftMatrix, oriInvMatrix);
+
+            cx = new float[]{transformMatrix.M11, transformMatrix.M12, transformMatrix.M13, transformMatrix.M14};
+            cy = new float[]{transformMatrix.M21, transformMatrix.M22, transformMatrix.M23, transformMatrix.M24};
         }
 
         double CalculateZoomX()
@@ -173,7 +194,7 @@ namespace ImageProccessing_HW1
 
         MatrixThree TranslateMatrix()
         {
-            Debug.Assert(origin_x_n == 3 && after_x_n == 3, "Origin Points or After Point not enough");
+            Debug.Assert(origin_x_n == point_n && after_x_n == point_n, "Origin Points or After Point not enough");
             return new MatrixThree(new double[] { 1, 0, transform.Tolist()[2], 0, 1, transform.Tolist()[5], 0, 0, 1 }, 9);
         }
 

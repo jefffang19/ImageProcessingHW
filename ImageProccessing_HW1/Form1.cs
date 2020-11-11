@@ -51,8 +51,8 @@ namespace ImageProccessing_HW1
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            // if more then 3 clicked
-            if (oriImagClicks >= 3) return;
+            // if more then 4 clicked
+            if (oriImagClicks >= 4) return;
 
             // get mouse args
             var mouseArgs = (MouseEventArgs)e;
@@ -141,9 +141,9 @@ namespace ImageProccessing_HW1
                 case 6:
                     mouseLabel.Visible = true;
                     mouseLabel.Text = "Mouse Click:Leftup,\nRightup,\nLeftDown";
-                    //double[] transitionMatrix = reg.FindTransform().Tolist(); // this function call is required
-                    //double cosAngle = reg.CalculateCosAngle();
-                    //double[] scaleFactory = reg.CalculateScaleFactor();
+                    double[] transitionMatrix = reg.FindTransform().Tolist(); // this function call is required
+                    double cosAngle = reg.CalculateCosAngle();
+                    double[] scaleFactory = reg.CalculateScaleFactor();
                     afterImgBox.Image = reg.NewRegisterImage(afterImag, openImag.Width, openImag.Height);
                     break;
                 default:
@@ -268,8 +268,8 @@ namespace ImageProccessing_HW1
 
         private void afterImgBox_Click(object sender, EventArgs e)
         {
-            // if more then 3 clicked
-            if (aftImagClick >= 3) return;
+            // if more then 4 clicked
+            if (aftImagClick >= 4) return;
 
             // get mouse args
             var mouseArgs = (MouseEventArgs)e;
