@@ -221,6 +221,7 @@
             // 
             // beforeHist
             // 
+            chartArea1.AxisX.Minimum = 0D;
             chartArea1.Name = "ChartArea1";
             this.beforeHist.ChartAreas.Add(chartArea1);
             this.beforeHist.Location = new System.Drawing.Point(264, 624);
@@ -231,10 +232,11 @@
             this.beforeHist.Size = new System.Drawing.Size(450, 300);
             this.beforeHist.TabIndex = 14;
             this.beforeHist.Text = "Before_Histogram";
-            this.beforeHist.Click += new System.EventHandler(this.beforeHist_Click);
+            this.beforeHist.Visible = false;
             // 
             // afterHist
             // 
+            chartArea2.AxisX.Minimum = 0D;
             chartArea2.Name = "ChartArea1";
             this.afterHist.ChartAreas.Add(chartArea2);
             this.afterHist.Location = new System.Drawing.Point(756, 624);
@@ -245,14 +247,14 @@
             this.afterHist.Size = new System.Drawing.Size(450, 300);
             this.afterHist.TabIndex = 15;
             this.afterHist.Text = "After_Histogram";
-            this.afterHist.Click += new System.EventHandler(this.afterHist_Click);
+            this.afterHist.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1490, 679);
+            this.ClientSize = new System.Drawing.Size(1511, 679);
             this.Controls.Add(this.afterHist);
             this.Controls.Add(this.beforeHist);
             this.Controls.Add(this.regAttr);

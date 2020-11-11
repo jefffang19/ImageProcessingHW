@@ -93,6 +93,8 @@ namespace ImageProccessing_HW1
                     regAttr.Visible = false;
                     registration.Visible = false;
                     loadImg2.Visible = false;
+                    beforeHist.Visible = false;
+                    afterHist.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("R channel");
                     subactionList.Items.Add("G Channel");
@@ -107,6 +109,8 @@ namespace ImageProccessing_HW1
                     regAttr.Visible = false;
                     registration.Visible = false;
                     loadImg2.Visible = false;
+                    beforeHist.Visible = false;
+                    afterHist.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("Mean Filter");
                     subactionList.Items.Add("Median Filter");
@@ -119,11 +123,15 @@ namespace ImageProccessing_HW1
                     regAttr.Visible = false;
                     registration.Visible = false;
                     loadImg2.Visible = false;
+                    beforeHist.Visible = true;
+                    afterHist.Visible = true;
                     HistogramEqualize histogramEq = new HistogramEqualize();
                     afterImgBox.Image = histogramEq.HisEqu(openImag);
                     //after image process function, add undo
                     undoImages.Push(new Bitmap(openImag));
                     openImag = new Bitmap(afterImgBox.Image);
+                    afterHist_Show();
+                    beforeHist_Show();
                     break;
                 case 3:
                     // show input box
@@ -134,6 +142,8 @@ namespace ImageProccessing_HW1
                     regAttr.Visible = false;
                     registration.Visible = false;
                     loadImg2.Visible = false;
+                    beforeHist.Visible = false;
+                    afterHist.Visible = false;
                     break;
                 case 4:
                     thresholdMinInputBox.Visible = false;
@@ -143,6 +153,8 @@ namespace ImageProccessing_HW1
                     regAttr.Visible = false;
                     registration.Visible = false;
                     loadImg2.Visible = false;
+                    beforeHist.Visible = false;
+                    afterHist.Visible = false;
                     subactionList.Items.Clear();
                     subactionList.Items.Add("Vertical");
                     subactionList.Items.Add("Horizontal");
@@ -156,6 +168,8 @@ namespace ImageProccessing_HW1
                     regAttr.Visible = false;
                     registration.Visible = false;
                     loadImg2.Visible = false;
+                    beforeHist.Visible = false;
+                    afterHist.Visible = false;
                     break;
                 case 6:
                     oriImagClicks = 0;
@@ -167,6 +181,8 @@ namespace ImageProccessing_HW1
                     registration.Visible = true;
                     mouseLabel.Visible = true;
                     loadImg2.Visible = true;
+                    beforeHist.Visible = false;
+                    afterHist.Visible = false;
                     mouseLabel.Text = "Mouse Click:Leftup,\nRightup,\nLeftDown\nRightDown\n";
                     break;
                 default:
@@ -180,6 +196,8 @@ namespace ImageProccessing_HW1
                     regAttr.Visible = false;
                     registration.Visible = false;
                     loadImg2.Visible = false;
+                    beforeHist.Visible = false;
+                    afterHist.Visible = false;
                     break;
             }
 
@@ -335,7 +353,7 @@ namespace ImageProccessing_HW1
 
         }
 
-        private void beforeHist_Click(object sender, EventArgs e)
+        private void beforeHist_Show()
         {
             Series series = new Series();
             series.ChartType = SeriesChartType.Column;
@@ -373,7 +391,7 @@ namespace ImageProccessing_HW1
             beforeHist.Series.Add(series);
         }
 
-        private void afterHist_Click(object sender, EventArgs e)
+        private void afterHist_Show()
         {
             Series series = new Series();
             series.ChartType = SeriesChartType.Column;
