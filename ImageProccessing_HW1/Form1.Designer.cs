@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.loadBtn = new System.Windows.Forms.Button();
             this.preImgBox = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -44,8 +48,12 @@
             this.loadImg2 = new System.Windows.Forms.Button();
             this.registration = new System.Windows.Forms.Button();
             this.regAttr = new System.Windows.Forms.Label();
+            this.beforeHist = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.afterHist = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.beforeHist)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.afterHist)).BeginInit();
             this.SuspendLayout();
             // 
             // loadBtn
@@ -76,7 +84,7 @@
             // 
             // saveBtn
             // 
-            this.saveBtn.Location = new System.Drawing.Point(778, 503);
+            this.saveBtn.Location = new System.Drawing.Point(72, 594);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(75, 30);
             this.saveBtn.TabIndex = 2;
@@ -159,7 +167,7 @@
             // 
             // undoBtn
             // 
-            this.undoBtn.Location = new System.Drawing.Point(930, 503);
+            this.undoBtn.Location = new System.Drawing.Point(183, 594);
             this.undoBtn.Name = "undoBtn";
             this.undoBtn.Size = new System.Drawing.Size(75, 30);
             this.undoBtn.TabIndex = 9;
@@ -204,18 +212,49 @@
             // regAttr
             // 
             this.regAttr.AutoSize = true;
-            this.regAttr.Location = new System.Drawing.Point(1107, 507);
+            this.regAttr.Location = new System.Drawing.Point(1216, 507);
             this.regAttr.Name = "regAttr";
             this.regAttr.Size = new System.Drawing.Size(140, 15);
             this.regAttr.TabIndex = 13;
             this.regAttr.Text = "Registration_Attruibute";
             this.regAttr.Visible = false;
             // 
+            // beforeHist
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.beforeHist.ChartAreas.Add(chartArea1);
+            this.beforeHist.Location = new System.Drawing.Point(264, 624);
+            this.beforeHist.Name = "beforeHist";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.beforeHist.Series.Add(series1);
+            this.beforeHist.Size = new System.Drawing.Size(450, 300);
+            this.beforeHist.TabIndex = 14;
+            this.beforeHist.Text = "Before_Histogram";
+            this.beforeHist.Click += new System.EventHandler(this.beforeHist_Click);
+            // 
+            // afterHist
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.afterHist.ChartAreas.Add(chartArea2);
+            this.afterHist.Location = new System.Drawing.Point(756, 624);
+            this.afterHist.Name = "afterHist";
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "Series1";
+            this.afterHist.Series.Add(series2);
+            this.afterHist.Size = new System.Drawing.Size(450, 300);
+            this.afterHist.TabIndex = 15;
+            this.afterHist.Text = "After_Histogram";
+            this.afterHist.Click += new System.EventHandler(this.afterHist_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1490, 679);
+            this.Controls.Add(this.afterHist);
+            this.Controls.Add(this.beforeHist);
             this.Controls.Add(this.regAttr);
             this.Controls.Add(this.registration);
             this.Controls.Add(this.loadImg2);
@@ -236,6 +275,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.preImgBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.afterImgBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.beforeHist)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.afterHist)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,6 +300,8 @@
         private System.Windows.Forms.Button loadImg2;
         private System.Windows.Forms.Button registration;
         private System.Windows.Forms.Label regAttr;
+        private System.Windows.Forms.DataVisualization.Charting.Chart beforeHist;
+        private System.Windows.Forms.DataVisualization.Charting.Chart afterHist;
     }
 }
 

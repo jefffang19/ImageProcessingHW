@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ImageProccessing_HW1
 {
@@ -332,6 +333,82 @@ namespace ImageProccessing_HW1
         private void label1_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void beforeHist_Click(object sender, EventArgs e)
+        {
+            Series series = new Series();
+            series.ChartType = SeriesChartType.Column;
+
+            Dictionary<int, int> intesFreq = new Dictionary<int, int>();
+            // Calculate Gray vale and Frequency
+            for (int i = 0; i < preImgBox.Image.Height; i++)
+            {
+                for (int j = 0; j < preImgBox.Image.Width; j++)
+                {
+                    int grayValue = ((Bitmap) preImgBox.Image).GetPixel(j, i).R;
+                    if(intesFreq.ContainsKey(grayValue))
+                        ++intesFreq[grayValue];
+                    else
+                    {
+                        intesFreq.Add(grayValue, 1);
+                    }
+                }
+            }
+
+            // Calculate Histogram
+            // x = gray value
+            // y = freq
+            for (int i = 0; i < 256; i++)
+            {
+                if(intesFreq.ContainsKey(i))
+                    series.Points.AddXY(i, intesFreq[i]);
+                else
+                {
+                    series.Points.AddXY(i, 0);
+                }
+            }
+
+            beforeHist.Series.Clear();
+            beforeHist.Series.Add(series);
+        }
+
+        private void afterHist_Click(object sender, EventArgs e)
+        {
+            Series series = new Series();
+            series.ChartType = SeriesChartType.Column;
+
+            Dictionary<int, int> intesFreq = new Dictionary<int, int>();
+            // Calculate Gray vale and Frequency
+            for (int i = 0; i < afterImgBox.Image.Height; i++)
+            {
+                for (int j = 0; j < afterImgBox.Image.Width; j++)
+                {
+                    int grayValue = ((Bitmap)afterImgBox.Image).GetPixel(j, i).R;
+                    if (intesFreq.ContainsKey(grayValue))
+                        ++intesFreq[grayValue];
+                    else
+                    {
+                        intesFreq.Add(grayValue, 1);
+                    }
+                }
+            }
+
+            // Calculate Histogram
+            // x = gray value
+            // y = freq
+            for (int i = 0; i < 256; i++)
+            {
+                if (intesFreq.ContainsKey(i))
+                    series.Points.AddXY(i, intesFreq[i]);
+                else
+                {
+                    series.Points.AddXY(i, 0);
+                }
+            }
+
+            afterHist.Series.Clear();
+            afterHist.Series.Add(series);
         }
     }
 }
