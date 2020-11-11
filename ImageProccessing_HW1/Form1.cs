@@ -326,7 +326,7 @@ namespace ImageProccessing_HW1
             //double[] scaleFactory = reg.CalculateScaleFactor();
             afterImgBox.Image = reg.NewRegisterImage(afterImag, openImag.Width, openImag.Height);
             regAttr.Visible = true;
-            regAttr.Text = reg.CalculateRegAttr();
+            regAttr.Text = reg.CalculateRegAttr(openImag, (Bitmap) afterImgBox.Image);
         }
 
         private void label1_Click_1(object sender, EventArgs e)

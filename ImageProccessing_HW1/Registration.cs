@@ -162,10 +162,10 @@ namespace ImageProccessing_HW1
                    Math.Sqrt(Math.Pow(origin_x[0] - origin_x[2], 2) + Math.Pow(origin_y[0] - origin_y[2], 2));
         }
 
-        public string CalculateRegAttr()
+        public string CalculateRegAttr(Bitmap refer, Bitmap reg)
         {
             double[] scalefac = CalculateScaleFactor();
-            string s = string.Format("Scaling Factor x:{0}\nScaling Factor y:{1}\nCosine Angle theta:{2}", scalefac[0], scalefac[1], CalculateCosAngle());
+            string s = string.Format("Scaling Factor x:{0}\nScaling Factor y:{1}\nCosine Angle theta:{2}\nIntensity Difference:{3}\n", scalefac[0], scalefac[1], CalculateCosAngle(), IntensityDiff(refer, reg));
 
             return s;
         }
@@ -209,6 +209,20 @@ namespace ImageProccessing_HW1
         MatrixThree CleanTransitionMatrix()
         {
             return ScalingMatrix().Mut(RotateMatrix());
+        }
+
+        double IntensityDiff(Bitmap refer, Bitmap reg)
+        {
+            double sum = 0;
+            for (int i = 0; i < refer.Height; i++)
+            {
+                for (int j = 0; j < refer.Width; j++)
+                {
+                    sum += Math.Abs(refer.GetPixel(j, i).R - reg.GetPixel(j, i).R);
+                }
+            }
+
+            return sum / (refer.Height * refer.Width);
         }
     }
 }
