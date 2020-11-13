@@ -83,13 +83,22 @@ namespace ImageProccessing_HW1
         {
             Bitmap overlay = new Bitmap(bot.Width, bot.Height);
             // draw the two overlay Bitmap
-            using (Graphics g = Graphics.FromImage(overlay))
+            /*using (Graphics g = Graphics.FromImage(overlay))
             {
                 g.Clear(Color.Black); //background
 
                 // draw two layers
                 g.DrawImage(bot, new Rectangle(0, 0, bot.Width, bot.Height));
                 g.DrawImage(top, new Rectangle(0, 0, top.Width, top.Height));
+            }*/
+            for (int i = 0; i < bot.Height; i++)
+            {
+                for (int j = 0; j < bot.Width; j++)
+                {
+                    overlay.SetPixel(j, i, bot.GetPixel(j,i));
+                    if(top.GetPixel(j,i).ToArgb() == Color.Green.ToArgb())
+                        overlay.SetPixel(j,i,top.GetPixel(j,i));
+                }
             }
 
             return overlay;

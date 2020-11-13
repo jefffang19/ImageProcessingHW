@@ -79,7 +79,6 @@ namespace ImageProccessing_HW1
                     if (stemPoints[1] >= aft.Height) stemPoints[1] = aft.Height - 1;
 
                     ori.SetPixel(j,i,aft.GetPixel(stemPoints[0], stemPoints[1]));
-                    //TODO: shift picture
                 }
             }
 

@@ -172,6 +172,7 @@ namespace ImageProccessing_HW1
                     afterHist.Visible = false;
                     break;
                 case 6:
+                    //TODO: undo function
                     oriImagClicks = 0;
                     aftImagClick = 0;
                     thresholdMinInputBox.Visible = false;
@@ -269,12 +270,14 @@ namespace ImageProccessing_HW1
 
         private void thresholdInputBox_TextChanged(object sender, EventArgs e)
         {
-            th_min = Convert.ToInt32(thresholdMinInputBox.Text);
+            if(!string.IsNullOrEmpty(thresholdMinInputBox.Text) && thresholdMinInputBox.Text.All(Char.IsDigit))
+                th_min = Convert.ToInt32(thresholdMinInputBox.Text);
         }
 
         private void thresholdMaxInputBox_TextChanged(object sender, EventArgs e)
         {
-            th_max = Convert.ToInt32(thresholdMaxInputBox.Text);
+            if (!string.IsNullOrEmpty(thresholdMaxInputBox.Text) && thresholdMaxInputBox.Text.All(Char.IsDigit))
+                th_max = Convert.ToInt32(thresholdMaxInputBox.Text);
         }
 
         private void doThreshold_Click(object sender, EventArgs e)
