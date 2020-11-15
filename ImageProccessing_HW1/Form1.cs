@@ -19,8 +19,7 @@ namespace ImageProccessing_HW1
         private Bitmap openImag;
         private Bitmap afterImag;
         private int actionlistSelect = 0;
-        private int th_min = 0;
-        private int th_max = 255;
+        private int thresh = 0;
 
         Registration reg = new Registration();
         private int oriImagClicks = 0;
@@ -87,7 +86,6 @@ namespace ImageProccessing_HW1
             {
                 case 0:
                     thresholdMinInputBox.Visible = false;
-                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
                     regAttr.Visible = false;
@@ -103,7 +101,6 @@ namespace ImageProccessing_HW1
                     break;
                 case 1:
                     thresholdMinInputBox.Visible = false;
-                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
                     regAttr.Visible = false;
@@ -117,7 +114,6 @@ namespace ImageProccessing_HW1
                     break;
                 case 2:
                     thresholdMinInputBox.Visible = false;
-                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = false;
                     doThreshold.Visible = false;
                     regAttr.Visible = false;
@@ -136,7 +132,6 @@ namespace ImageProccessing_HW1
                 case 3:
                     // show input box
                     thresholdMinInputBox.Visible = true;
-                    thresholdMaxInputBox.Visible = true;
                     subactionList.Visible = false;
                     doThreshold.Visible = true;
                     regAttr.Visible = false;
@@ -147,7 +142,6 @@ namespace ImageProccessing_HW1
                     break;
                 case 4:
                     thresholdMinInputBox.Visible = false;
-                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
                     regAttr.Visible = false;
@@ -162,7 +156,6 @@ namespace ImageProccessing_HW1
                     break;
                 case 5:
                     thresholdMinInputBox.Visible = true;
-                    thresholdMaxInputBox.Visible = true;
                     subactionList.Visible = false;
                     doThreshold.Visible = true;
                     regAttr.Visible = false;
@@ -176,7 +169,6 @@ namespace ImageProccessing_HW1
                     oriImagClicks = 0;
                     aftImagClick = 0;
                     thresholdMinInputBox.Visible = false;
-                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = false;
                     doThreshold.Visible = false;
                     registration.Visible = true;
@@ -189,7 +181,6 @@ namespace ImageProccessing_HW1
                 default:
                     // hide input box
                     thresholdMinInputBox.Visible = false;
-                    thresholdMaxInputBox.Visible = false;
                     subactionList.Visible = true;
                     doThreshold.Visible = false;
                     subactionList.Items.Clear();
@@ -271,13 +262,12 @@ namespace ImageProccessing_HW1
         private void thresholdInputBox_TextChanged(object sender, EventArgs e)
         {
             if(!string.IsNullOrEmpty(thresholdMinInputBox.Text) && thresholdMinInputBox.Text.All(Char.IsDigit))
-                th_min = Convert.ToInt32(thresholdMinInputBox.Text);
+                thresh = Convert.ToInt32(thresholdMinInputBox.Text);
         }
 
         private void thresholdMaxInputBox_TextChanged(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(thresholdMaxInputBox.Text) && thresholdMaxInputBox.Text.All(Char.IsDigit))
-                th_max = Convert.ToInt32(thresholdMaxInputBox.Text);
+
         }
 
         private void doThreshold_Click(object sender, EventArgs e)
@@ -285,13 +275,13 @@ namespace ImageProccessing_HW1
             if (actionList.SelectedIndex == 3)
             {
                 Threshold thresh = new Threshold();
-                afterImgBox.Image = thresh.UserDefineThreshold(openImag, th_min, th_max);
+                afterImgBox.Image = thresh.UserDefineThreshold(openImag, this.thresh);
             }
             else if (actionList.SelectedIndex == 5)
             {
                 Sobel _sobel = new Sobel();
                 Bitmap originalImage = undoImages.First();
-                afterImgBox.Image = _sobel.ThresholdSobel(originalImage, (Bitmap)afterImgBox.Image, th_min, th_max);
+                afterImgBox.Image = _sobel.ThresholdSobel(originalImage, (Bitmap)afterImgBox.Image, thresh);
             }
             else
             {

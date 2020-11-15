@@ -70,10 +70,10 @@ namespace ImageProccessing_HW1
             return after;
         }
 
-        public Bitmap ThresholdSobel(Bitmap ori, Bitmap sob, int upper, int lower)
+        public Bitmap ThresholdSobel(Bitmap ori, Bitmap sob, int upper)
         {
             Threshold thresh = new Threshold();
-            Bitmap sobThresh = thresh.UserDefineThreshold(sob, upper, lower);
+            Bitmap sobThresh = thresh.UserDefineThreshold(sob, upper);
             sobThresh = SetBlackToTransparent(sobThresh, true); // set the black part to transparent
 
             return Overlay(ori, sobThresh);
@@ -96,7 +96,7 @@ namespace ImageProccessing_HW1
                 for (int j = 0; j < bot.Width; j++)
                 {
                     overlay.SetPixel(j, i, bot.GetPixel(j,i));
-                    if(top.GetPixel(j,i).ToArgb() == Color.Green.ToArgb())
+                    if(top.GetPixel(j,i).ToArgb() != Color.Transparent.ToArgb())
                         overlay.SetPixel(j,i,top.GetPixel(j,i));
                 }
             }
