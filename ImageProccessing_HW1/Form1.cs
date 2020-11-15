@@ -21,7 +21,7 @@ namespace ImageProccessing_HW1
         private int actionlistSelect = 0;
         private int thresh = 0;
 
-        Registration reg = new Registration();
+        private Registration reg;
         private int oriImagClicks = 0;
         private int aftImagClick = 0;
          
@@ -165,9 +165,9 @@ namespace ImageProccessing_HW1
                     afterHist.Visible = false;
                     break;
                 case 6:
-                    //TODO: undo function
                     oriImagClicks = 0;
                     aftImagClick = 0;
+                    reg = new Registration();
                     thresholdMinInputBox.Visible = false;
                     subactionList.Visible = false;
                     doThreshold.Visible = false;
